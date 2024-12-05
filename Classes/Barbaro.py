@@ -16,6 +16,7 @@ class Barbaro:
         self.charisma = -1
         self.constituicao = 3
         self.inteligencia = -1
+        self.trunfoFinal = False
         self.esquivo = False
         self.danoFuria = 3
         self.Imprudente = False
@@ -114,7 +115,7 @@ class Barbaro:
         print(Style.BRIGHT + Back.RED + "Dano recebido : " + str(dano))
 
         nova_vida = self.HP - dano
-        if dano > 10:
+        if (dano > 10 and self.trunfoFinal == False):
             Irina = input(
                 Style.BRIGHT
                 + Back.RED
@@ -125,6 +126,7 @@ class Barbaro:
                 + Back.RED
                 + "Sua AMADA Irina lhe salvou , Parabéns Herói GROAK, parece que até anjos estão de olho em você!"
             )
+            self.trunfoFinal = True
             nova_vida += 20
 
         if nova_vida <= 0 and self.orc == False:
