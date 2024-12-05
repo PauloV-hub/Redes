@@ -105,7 +105,16 @@ class Clerigo:
         msg = "D" + "AT" + str(auxiliar).zfill(2) + str(dano)
         return msg
         # A mensagem de ataque agora inclui o valor correto do dano
-
+    
+    def getTeste(self,atributo, msg):
+        d20 = random.randint(1,20)
+        salvaguarda = d20 + atributo
+        if(int(msg[2:4]) > salvaguarda):
+            dano = math.ceil(int(msg[4:6]))
+        else:
+            dano = math.ceil(int(msg[4:6])/2)
+        return dano
+    
     def ataqueRecebido(self, msg):
         if self.armadura == True:
             CA = self.CA + 5
@@ -117,19 +126,18 @@ class Clerigo:
             CA = self.CA - 3
         else:
             CA = self.CA
-        if msg[:1] == "E" :
-            if(msg[1:2] =="S" and int(msg[2:4]) > self.strength):
-                dano = math.ceil(int(msg[4:6]))
-            elif(msg[1:2] =="D" and int(msg[2:4]) > self.destreza):
-                dano = math.ceil(int(msg[4:6]))
-            elif(msg[1:2] =="I" and int(msg[2:4]) > self.inteligencia):
-                dano = math.ceil(int(msg[4:6]))
-            elif(msg[1:2] =="W" and int(msg[2:4]) > self.wisdom):
-                dano = math.ceil(int(msg[4:6]))
-            elif(msg[1:2] =="C" and int(msg[2:4]) > self.constituicao):
-                dano = math.ceil(int(msg[4:6]))
-            elif(msg[1:2] =="H" and int(msg[2:4]) > self.charisma):
-                dano = math.ceil(int(msg[4:6]))
+        if (msg[:2] == "ES") :
+                dano = self.getTeste(self.strength,msg)
+        elif(msg[:2] =="ED" ):
+                dano = self.getTeste(self.destreza,msg)
+        elif(msg[:2] =="EI" ):
+                dano = self.getTeste(self.inteligencia,msg)
+        elif(msg[:2] =="EW" ):
+                dano = self.getTeste(self.wisdom,msg)
+        elif(msg[:2] =="EC" ):
+                dano = self.getTeste(self.constituicao,msg)
+        elif(msg[:2] =="EH"):
+                dano = self.getTeste(self.charisma,msg)
         elif msg[:2] == "AT" and int(msg[2:4]) >= CA:
             dano = int(msg[4:6])
         else:

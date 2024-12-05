@@ -4,6 +4,7 @@
 
 # Stats:
 # STR: 8 | DEX: 18 | CON: 16 | INT:16 | WIS:8 | CHA:8
+import math
 import random
 from colorama import init, Fore, Style, Back
 
@@ -17,9 +18,7 @@ class Mago:
     espacos1Ciclo = 4
     espacos2Ciclo = 3
     espacos3Ciclo = 2
-
-    modDestreza = 4
-    modInteligencia = 3
+    
 
     dodgeAction = False
 
@@ -27,6 +26,12 @@ class Mago:
         self.CA = 20  # CA = 13(armadura arcana) + 4(destreza) + 3(bladesong)
         self.HP = 37
         self.salvaguarda = 15
+        self.strength = -1
+        self.destreza = 4
+        self.wisdom = -1
+        self.charisma = -1
+        self.constituicao = 3
+        self.inteligencia = 3
     def critico(self,d20, dano):
         if(d20==20):
             return True
@@ -56,11 +61,11 @@ class Mago:
             dano = 0
             if (acao == "1"):
                 d20 = random.randint(1, 20)
-                d20Final = d20 + self.modDestreza + bonusProficiencia
+                d20Final = d20 + self.destreza + bonusProficiencia
                 for i in range(1, 4):
                     d8 = random.randint(1, 8)
                     dano = dano + d8
-                dano = dano + self.modDestreza
+                dano = dano + self.destreza
                 if(self.critico(d20, dano)):
                     dano = dano * 2
                 self.print(d20Final, dano)
@@ -81,13 +86,29 @@ class Mago:
                 print(Back.MAGENTA + Fore.WHITE + Style.BRIGHT + "Digite uma Ação Válida! \n Você não possui o espaço de magia necessário!!")
                 ataqueValido = False
                 
-
-        
+    def getTeste(self,atributo, msg):
+        d20 = random.randint(1,20)
+        salvaguarda = d20 + atributo
+        if(int(msg[2:4]) > salvaguarda):
+            dano = math.ceil(int(msg[4:6]))
+        else:
+            dano = math.ceil(int(msg[4:6])/2)
+        return dano
 
     def ataqueRecebido(self, msg):
 
-        if msg[:2] == "ED" and int(msg[1:3]) >= 15:
-            dano = int(msg[4:6])
+        if (msg[:2] == "ES") :
+                dano = self.getTeste(self.strength,msg)
+        elif(msg[:2] =="ED" ):
+                dano = self.getTeste(self.destreza,msg)
+        elif(msg[:2] =="EI" ):
+                dano = self.getTeste(self.inteligencia,msg)
+        elif(msg[:2] =="EW" ):
+                dano = self.getTeste(self.wisdom,msg)
+        elif(msg[:2] =="EC" ):
+                dano = self.getTeste(self.constituicao,msg)
+        elif(msg[:2] =="EH"):
+                dano = self.getTeste(self.charisma,msg)
         elif msg[:2] == "AT" and int(msg[2:4]) >= self.CA:
             # Se o ataque for menor que CA+5, usa shield
             if int(msg[2:4]) < (self.CA + 5) and self.espacos1Ciclo > 0:
