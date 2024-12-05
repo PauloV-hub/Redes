@@ -1,7 +1,7 @@
 import random
 import math
 from colorama import init, Fore, Style, Back
-
+#STR: 14 | DEX: 10| CON: 16 | INT: 8 | WIS: 18 | CHA: 8
 init(autoreset=True)
 
 
@@ -14,12 +14,12 @@ class Clerigo:
     def __init__(self):
         self.CA = 16
         self.HP = 43
-        self.strength = 8
-        self.destreza = 16
-        self.wisdom = 14
-        self.charisma = 10
-        self.constituicao = 16
-        self.inteligencia = 8
+        self.strength = 2
+        self.destreza = 3
+        self.wisdom = 2
+        self.charisma = 0
+        self.constituicao = 3
+        self.inteligencia = -1
         self.esquivo = False
         self.danobase = 3
         self.CHAMA = False
