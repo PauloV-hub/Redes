@@ -57,7 +57,7 @@ class Clerigo:
             d12 = random.randint(1, 12)
             dano = d12 + self.danobase - 2
             auxiliar = random.randint(1, 20) + 10
-
+            d20 = auxiliar
             if self.armadura == True:
                 auxiliar -= 2
             if self.corpo == True:
@@ -77,6 +77,7 @@ class Clerigo:
             d12 = random.randint(1, 12)
             dano = d12 + self.danobase + 5
             auxiliar = random.randint(1, 20)
+            d20 = auxiliar
             self.esquivo = True
 
             if self.armadura == True:
@@ -99,13 +100,18 @@ class Clerigo:
             self.armadura = True
             self.cura = True
             auxiliar = 0
+            d20 = auxiliar
             dano = 0
             print(Back.YELLOW + Style.BRIGHT + "hack ativado")
-
+        dano = self.critico(d20, dano)
         msg = "D" + "AT" + str(auxiliar).zfill(2) + str(dano)
         return msg
         # A mensagem de ataque agora inclui o valor correto do dano
-    
+    def critico(self,d20, dano):
+        if(d20==20):
+            return 2*dano
+        else:
+            return dano
     def getTeste(self,atributo, msg):
         d20 = random.randint(1,20)
         salvaguarda = d20 + atributo

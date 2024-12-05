@@ -34,9 +34,9 @@ class Mago:
         self.inteligencia = 3
     def critico(self,d20, dano):
         if(d20==20):
-            return True
+            return dano*2
         else:
-            return False
+            return dano
     def print(self,d20Final,dano):
          print(
             Back.MAGENTA
@@ -66,8 +66,7 @@ class Mago:
                     d8 = random.randint(1, 8)
                     dano = dano + d8
                 dano = dano + self.destreza
-                if(self.critico(d20, dano)):
-                    dano = dano * 2
+                dano = self.critico(d20Final,dano)
                 self.print(d20Final, dano)
                 msg = "D" + "AT" + str(d20Final).zfill(2) + str(dano)
                 ataqueValido = True

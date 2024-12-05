@@ -49,10 +49,10 @@ class Barbaro:
                 + str(self.danoFuria)
             )
             dano = d12 + 5 + self.danoFuria
-            auxiliar = random.randint(1, 20)
+            d20 = random.randint(1, 20)   # Dado d20
 
             if self.Imprudente == True:
-                auxiliar += 5
+                auxiliar = d20 + 5
             print(
                 Style.BRIGHT
                 + Back.RED
@@ -71,10 +71,15 @@ class Barbaro:
                 + Back.RED
                 + "Modo Esquivo ativado! Me acerta que eu duvido"
             )
+        dano = self.critico(d20,dano)
         msg = "D" + "AT" + str(auxiliar).zfill(2) + str(dano)
         return msg
         # A mensagem de ataque agora inclui o valor correto do dano
-    
+    def critico(self,d20, dano):
+        if(d20==20):
+            return 2*dano
+        else:
+            return dano
     def getTeste(self,atributo, msg):
         d20 = random.randint(1,20)
         salvaguarda = d20 + atributo
