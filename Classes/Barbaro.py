@@ -1,7 +1,7 @@
 import random
 import math
 from colorama import init, Fore, Style, Back
-
+# STR: 18 | DEX: 16| CON: 16 | INT: 8 | WIS: 8 | CHA: 8
 init(autoreset=True)
 
 
@@ -10,12 +10,12 @@ class Barbaro:
     def __init__(self):
         self.CA = 15
         self.HP = 55
-        self.strength = 8
-        self.destreza = 12
-        self.wisdom = 14
-        self.charisma = 10
-        self.constituicao = 16
-        self.inteligencia = 8
+        self.strength = 4
+        self.destreza = 3
+        self.wisdom = -1
+        self.charisma = -1
+        self.constituicao = 3
+        self.inteligencia = -1
         self.esquivo = False
         self.danoFuria = 3
         self.Imprudente = False
