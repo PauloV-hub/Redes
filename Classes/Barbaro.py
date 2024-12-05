@@ -121,14 +121,15 @@ class Barbaro:
                 + Back.RED
                 + "Você irá sofrer um dano monstruoso\n Deseja utilizar seu Trunfo Final(única utilização)? \n (1)Sim \n (2) Não\n "
             )
-            print(
+            if(Irina==1):
+                print(
                 Style.BRIGHT
                 + Back.RED
                 + "Sua AMADA Irina lhe salvou , Parabéns Herói GROAK, parece que até anjos estão de olho em você!"
-            )
-            self.trunfoFinal = True
-            nova_vida += 20
-
+                )
+                self.trunfoFinal = True
+                nova_vida += 20    
+        
         if nova_vida <= 0 and self.orc == False:
             nova_vida = 1
             self.orc = True
