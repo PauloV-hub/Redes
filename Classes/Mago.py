@@ -54,8 +54,7 @@ class Mago:
                 + "Qual ação deseja fazer?\n(1)Lâmina das trevas + Lâmina estrondosa (2) Bola de fogo\n "
             )
             dano = 0
-            if (acao == "1" and self.espacos1Ciclo > 0):
-                self.espacos1Ciclo = self.espacos1Ciclo - 1
+            if (acao == "1"):
                 d20 = random.randint(1, 20)
                 d20Final = d20 + self.modDestreza + bonusProficiencia
                 for i in range(1, 4):
