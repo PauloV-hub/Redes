@@ -25,6 +25,7 @@ class Barbaro:
     def ataqueAcerto(self):
         auxiliar = 0
         dano = 0
+        d20 = 0
         imprudente = input(
             Back.RED
             + Style.BRIGHT
@@ -37,22 +38,15 @@ class Barbaro:
         ataque = input(
             Back.RED
             + Style.BRIGHT
-            + "Deseja usar ataque utilizar?\n (1) Ataque com Machado 2x (2) Modo ESQUIVOOO\n "
+            + "Deseja usar ataque utilizar?\n (1) Ataque com Machado 2x (2) Modo ESQUIVO\n "
         )
         if ataque == "1":
             d12 = random.randint(1, 12)
-            print(
-                Style.BRIGHT
-                + Back.RED
-                + "Soma entre 5 e :  "
-                + str(d12)
-                + str(self.danoFuria)
-            )
-            dano = d12 + 5 + self.danoFuria
+            dano = (2*d12) + 5 + self.danoFuria
             d20 = random.randint(1, 20)   # Dado d20
-
+            d20Final = d20 + 3 + 5  # d20 + Bonus de proeficiencia + strength
             if self.Imprudente == True:
-                auxiliar = d20 + 5
+                auxiliar = d20Final + 5
             print(
                 Style.BRIGHT
                 + Back.RED
@@ -61,7 +55,6 @@ class Barbaro:
                 + "\nSeu dano: "
                 + str(dano)
             )
-
         else:
             self.esquivo = True
             auxiliar = 0
@@ -126,11 +119,11 @@ class Barbaro:
                 + Back.RED
                 + "Você irá sofrer um dano monstruoso\n Deseja utilizar seu Trunfo Final(única utilização)? \n (1)Sim \n (2) Não\n "
             )
-            if(Irina==1):
+            if Irina == '1' :
                 print(
                 Style.BRIGHT
                 + Back.RED
-                + "Sua AMADA Irina lhe salvou , Parabéns Herói GROAK, parece que até anjos estão de olho em você!"
+                + "Sunny lhe salvou, Parabéns Effie, parece que você tem bons amigos ao seu lado!!!"
                 )
                 self.trunfoFinal = True
                 nova_vida += 20    
@@ -138,7 +131,7 @@ class Barbaro:
         if nova_vida <= 0 and self.orc == False:
             nova_vida = 1
             self.orc = True
-            print(Style.BRIGHT + Back.RED + "EU SOU ORC SEU OTÁRIO!!!\n")
+            print(Style.BRIGHT + Back.RED + "EU SOU ORC !!!\n")
 
         self.HP = nova_vida
         self.Imprudente = False

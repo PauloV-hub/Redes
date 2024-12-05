@@ -19,10 +19,10 @@ class Personagem:
 
         # Definindo a classe com base no parâmetro recebido
         if classe == "1":
-            self.nome = "Groak"
+            self.nome = "Effie"
             print(
                 Fore.YELLOW
-                + "\nVocê escolheu um Bárbaro!\nParabéns por escolher o Herói Groak!\n"
+                + "\nVocê escolheu um Bárbaro!\nParabéns por escolher a Criada por Lobos : Effie!\n"
             )
             self.classe = Barbaro()
         elif classe == "2":
